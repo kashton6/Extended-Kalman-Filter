@@ -34,6 +34,37 @@ sun_sensor_var = 0.04; %sun sensor noise variance
     
 
     
+    
+tfinal = t(w);
+
+% Simulation with digital controller
+simout1=sim('MEKF_Model_works','StopTime','tfinal', ...
+    'SaveTime','on','TimeSaveName','timeoutNew',...
+    'SaveOutput','on','OutputSaveName','youtNew');
+time2=simout1.get('timeoutNew');
+y=simout1.get('youtNew');
+qest_simu=y{1}.Values.Data';
+
+figure
+hold on
+subplot(2,2,1)
+plot(t,qest_simu(1,:),'g')
+subplot(2,2,2)
+plot(t,qest_simu(2,:),'r')
+subplot(2,2,3)
+plot(t,qest_simu(3,:),'b')
+subplot(2,2,4)
+plot(t,qest_simu(4,:),'m')
+title('q1 Evolution/Estimates')
+xlabel('Time (min)')
+ylabel('q1 (rad)')
+grid on
+legend('Estimated q1 (simulink)','Estimated q2 (simulink)','Estimated q3 (simulink)','Estimated q4 (simulink)''Location','southwest')
+    
+
+% Save Workspace.
+filename = 'simData';
+save('simData')
 
 % Save Workspace.
 filename = 'simData';
