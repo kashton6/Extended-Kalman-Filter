@@ -1,8 +1,8 @@
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%% ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Set Initial Conditions
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % 
-
+t = [0:0.1:300];
  %%% MEKF initialize values %%%
  sig_v = sqrt(10)*1e-10;% gyro sensor noise
 sig_u = sqrt(10)*1e-3;
@@ -32,9 +32,6 @@ sun_sensor_var = 0.04; %sun sensor noise variance
     [nr,mr] = size(R_sq);
 
     
-
-    
-    
 tfinal = t(w);
 
 % Simulation with digital controller
@@ -61,10 +58,6 @@ ylabel('q1 (rad)')
 grid on
 legend('Estimated q1 (simulink)','Estimated q2 (simulink)','Estimated q3 (simulink)','Estimated q4 (simulink)''Location','southwest')
     
-
-% Save Workspace.
-filename = 'simData';
-save('simData')
 
 % Save Workspace.
 filename = 'simData';
