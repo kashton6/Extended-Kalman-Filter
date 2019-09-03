@@ -3,6 +3,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % 
 t = [0:0.1:300];
+w = length(t);
  %%% MEKF initialize values %%%
  sig_v = sqrt(10)*1e-10;% gyro sensor noise
 sig_u = sqrt(10)*1e-3;
@@ -35,7 +36,7 @@ sun_sensor_var = 0.04; %sun sensor noise variance
 tfinal = t(w);
 
 % Simulation with digital controller
-simout1=sim('MEKF_Model_works','StopTime','tfinal', ...
+simout1=sim('MEKF_Model','StopTime','tfinal', ...
     'SaveTime','on','TimeSaveName','timeoutNew',...
     'SaveOutput','on','OutputSaveName','youtNew');
 time2=simout1.get('timeoutNew');
